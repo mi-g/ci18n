@@ -15,7 +15,7 @@
                     <div class="form-group">
                         <img class="form-control static waiter" ng-class="{'waiter-waiting':inCall>0}" src="/images/waiter.gif"/>                                
                     </div>
-                    <div ng-show="!master.repo" class="input-group col-xs-10">
+                    <div ng-show="!master.repo" class="input-group col-xs-8">
                         <input type="text" ng-model="repoUrl" class="form-control" placeholder="Github repository URL"/>
                         <div class="input-group-btn">
                             <button type="button" ng-disabled="!master.fullName" ng-click="openRepository()" class="btn btn-default"><span class="fa fa-play"></span></button>
@@ -29,7 +29,7 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" role="menu">
                             <ul class="nav">
-                                   <li><a href="#" ng-click="closeProject()"><span class="fa fa-close"></span> Close project</a></li>
+                                   <li ng-show="master.repo"><a href="#" ng-click="closeProject()"><span class="fa fa-close"></span> Close project</a></li>
                                 <% if(!githubOauthToken) { %>
                                     <li>Not logged</li>
                                 <% } else { %>
@@ -39,7 +39,7 @@
                         </div>
                     </div>                 
 
-                    <div class="form-control static dropdown navbar-right">
+                    <div ng-show="master.repo" class="form-control static dropdown navbar-right">
                         <a role="button" data-toggle="dropdown">
                                 {{ currentLocale || "Locales"}} <span class="caret"></span>
                         </a>
@@ -52,7 +52,7 @@
                         </div>
                     </div>                 
 
-                    <button ng-show="isModified()" class="form-control btn btn-success navbar-right" ng-click="save()"><span class="fa fa-save"></span> Save</button>
+                    <button ng-show="master.repo && isModified()" class="form-control btn btn-success navbar-right" ng-click="save()"><span class="fa fa-save"></span> Save</button>
 
                     <% if(!githubOauthToken) { %>
                         <a class="form-control btn btn-default navbar-right" href="<%= loginUrl %>"><span class="fa fa-sign-in"></span> Github Login</a>

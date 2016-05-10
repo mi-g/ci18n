@@ -76,7 +76,7 @@ module.exports = function(app) {
         },function(error, response, body) {
             console.info("Resp",error,response.statusCode,typeof body,body);
             var responseData = JSON.parse(body);
-            res.redirect('/work?token='+encodeURIComponent(responseData.access_token));
+            res.redirect('/?token='+encodeURIComponent(responseData.access_token));
         });
     });
 	app.get("/authenticated",function(req, res) {
