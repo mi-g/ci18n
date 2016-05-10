@@ -1,0 +1,11 @@
+
+<h2>Error</h2>
+
+<pre style="overflow: visible">
+<%= error %>
+</pre>
+
+<% if(config.showErrorStack) { %>
+<pre style="overflow: visible"><%= error.stack %></pre>
+<% } %>
+

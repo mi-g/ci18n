@@ -1,0 +1,112 @@
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+
+.row.main-row > * {
+    padding: 0 0 0 50px;
+}
+
+.form-control.static {
+    border: 0;
+    box-shadow: none;
+    background-color: transparent;
+}
+
+.form-control.static a:hover {
+    text-decoration: none;
+}
+
+.form-control.waiter {
+    visibility: hidden;
+}
+
+.form-control.waiter.waiter-waiting {
+    visibility: visible;
+}
+
+.locale-string-cont {
+    margin: 1em 0;
+    padding: 1em;
+    background-color: #eee;
+    line-height: 1.5em;
+}
+
+.locale-string-tag {
+    font-weight: bold;
+}
+
+.locale-string-ref {
+}
+
+.locale-string-edit {
+}
+
+.locale-string-edit textarea {
+    width: 100%;
+    height: 3.5em;
+}
+
+.locale-string-cont em {
+    font-weight: normal;
+    font-style: italic;
+}
+
+#ci18n-bar .form-group {
+    margin-bottom: 0;
+}
+
+#ci18n-bar {
+    min-height: inherit;
+    margin-bottom: 0;
+}
+
+#footer-wrapper {
+    border-top: solid 1px #ced0b7;
+    padding: 3em 0;
+}
+
+#footer-wrapper .row > * {
+    padding: 0;    
+}
+
+body {
+    background-color: white;
+}
+
+#copyright {
+    padding: 0;
+    border: 0;
+}
+
+#header-wrapper {
+    background: white;
+    border-bottom: solid 1px #ced0b7;
+}
+
+#header {
+    background: white;
+    border: 0;
+    border-radius: 0;
+    margin: 0;
+    height: 72px;
+    box-shadow: none;
+}
+
+#header h1 a {
+    color: #222;    
+}
+
+#header nav a, #header nav a.current-page-item {
+    color: #222;    
+    background: transparent;    
+    box-shadow: none;
+    outline: 0;
+}
+
+#header nav a:hover {
+    color: #888;    
+    background: transparent;    
+    box-shadow: none;
+    outline: 0;
+}

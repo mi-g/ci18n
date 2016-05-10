@@ -1,0 +1,55 @@
+{
+	"login": "admin",
+	"password": "02d6459e887bc525b16124e0d69cd27c197b0186c253d1d3eee25177c3c6446e",
+	"sessionSecret": "CFcgvMzKjJg76",
+	"staticMaxAge": "7d",
+	"siteName": "Ci18n",
+	"domain": null,
+	"shutdownTimeout": 5,
+	"sessionExpiration": 259200,
+	"parseUserAgent": true,
+	"geoip": true,
+	"gaTrackingCode": null,
+	"http": {
+		"port": 1080,
+		"disabled": false,
+		"bind": null
+	},
+	"https": {
+		"port": 9443,
+		"disabled": true,
+		"bind": null,
+		"keyFile": "/path/to/file.key",
+		"certFile": "/path/to/file.crt"
+	},
+	"defaultScripts": [
+		"/js/jquery.min.js",
+		"/js/jquery.dropotron.min.js",
+		"/js/bootstrap.min.js",
+		"/js/skel.min.js",
+		"/js/skel-viewport.min.js",
+		"/js/util.js",
+		"/js/main.js"
+	],
+	"defaultExtScripts": [
+	],
+	"defaultStyles": [
+		"/css/bootstrap.min.css",
+		"/css/bootstrap-theme.min.css",
+		"/css/main.css",
+        "/css/ci18n.css"
+	],
+	"defaultExtStyles": [
+		"//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css"
+	],
+	"staticBypassCache": true,
+	"concatStyles": false,
+	"minifyStyles": true,
+	"concatScripts": false,
+	"minifyScripts": true,
+	"criticalPathStyles": true,
+	"forceAdmin": false,
+	"showErrorStack": false,
+    "githubAppClientId": "XXX",
+    "githubAppClientSecret": "YYY"
+}

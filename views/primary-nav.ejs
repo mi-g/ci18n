@@ -1,0 +1,20 @@
+<nav id="nav">
+	<ul>
+	<% nav.forEach(function(entry) {
+		if(entry.admin && (!req.user || !req.user.admin))
+			return; 
+	%>
+		<li><a href="<%= entry.link %>"  target="ci18n_<%= entry.text %>" class="<%=
+			(entry.section || entry.link) == (locals.section || req.path) ? "current-page-item":""
+		%>"><%= entry.text %></a>
+		<% if(entry.sub) { %>
+			<ul>
+			<% entry.sub.forEach(function(subentry) { %>
+				<li><a href="<%= subentry.link %>" target="ci18n_<%= subentry.text %>"><%= subentry.text %></a></li>
+			<% }); %>
+			</ul>
+		<% } %>
+		</li>
+	<% }); %>
+	</ul>
+</nav>

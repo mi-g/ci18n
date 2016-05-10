@@ -1,0 +1,107 @@
+
+<script>
+    var githubOauthToken = <% if(githubOauthToken) { %>"<%= githubOauthToken %>"<% } else { %>null<% } %>;
+    var githubUrl = <% if(githubUrl) { %>"<%= githubUrl %>"<% } else { %>null<% } %>;
+</script>
+
+<div ng-controller="WorkCtrl" ng-cloak>
+   
+    <nav id="ci18n-bar" class="navbar navbar-default navbar-static-top">
+        <div class="container-fluid">
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+               <div class="form-group form-inline">
+                    <div class="form-group">
+                        <img class="form-control static waiter" ng-class="{'waiter-waiting':inCall>0}" src="/images/waiter.gif"/>                                
+                    </div>
+                    <div ng-show="!master.repo" class="input-group col-xs-10">
+                        <input type="text" ng-model="repoUrl" class="form-control" placeholder="Github repository URL"/>
+                        <div class="input-group-btn">
+                            <button type="button" ng-disabled="!master.fullName" ng-click="openRepository()" class="btn btn-default"><span class="fa fa-play"></span></button>
+                        </div>
+                    </div>
+                    <div class="form-control static" ng-show="master.repo" class="input-group">{{master.repo.full_name}}</div>
+
+                    <div class="form-control static dropdown navbar-right">
+                        <a role="button" data-toggle="dropdown">
+                                &hellip; <span class="caret"></span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" role="menu">
+                            <ul class="nav">
+                                   <li><a href="#" ng-click="closeProject()"><span class="fa fa-close"></span> Close project</a></li>
+                                <% if(!githubOauthToken) { %>
+                                    <li>Not logged</li>
+                                <% } else { %>
+                                    <li><a href="?logout=1"><span class="fa fa-sign-out"></span> Logout</a></li>
+                                <% } %>
+                            </ul>
+                        </div>
+                    </div>                 
+
+                    <div class="form-control static dropdown navbar-right">
+                        <a role="button" data-toggle="dropdown">
+                                {{ currentLocale || "Locales"}} <span class="caret"></span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" role="menu">
+                            <ul class="nav">
+                                <li ng-repeat="(locale,meta) in master.localesMeta">
+                                    <a href="#" ng-click="pickLocale(locale)">{{locale}}</a>
+                                </li>                       
+                            </ul>
+                        </div>
+                    </div>                 
+
+                    <button ng-show="isModified()" class="form-control btn btn-success navbar-right" ng-click="save()"><span class="fa fa-save"></span> Save</button>
+
+                    <% if(!githubOauthToken) { %>
+                        <a class="form-control btn btn-default navbar-right" href="<%= loginUrl %>"><span class="fa fa-sign-in"></span> Github Login</a>
+                    <% } %>
+                                     
+                </div>           
+                                                    
+            </div>
+        </div>
+    </nav>     
+
+
+   <div ng-show="currentLocale && currentLocalesData[currentLocale]">
+       
+       <div ng-repeat="(tag, refString) in master.localeRefData" class="locale-string-cont">
+           <div class="locale-string-tag"><em>Tag:</em> {{tag}}</div>
+           <div class="locale-string-ref"><em>{{master.repo.full_name}} {{master.manifest.locale_ref}}:</em> {{refString}}</div>
+           <div class="locale-string-master-ref" ng-show="forkedDiff(currentLocale,tag)">
+               <em>{{master.repo.full_name}} {{currentLocale}}:</em> {{master.localesData[currentLocale][tag]}}</div>
+           <div class="locale-string-edit">
+               <textarea ng-model="currentLocalesData[currentLocale][tag]"></textarea>
+           </div>
+       </div>
+       
+       
+   </div>
+        
+        
+    <div id="commit-dialog" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Save changes</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Save the following changes:</p>
+                    <p ng-repeat="change in saveData.changes"><strong>{{change.locale}}</strong>: {{change.count}}
+                        <span ng-show="change.count<2">change</span><span ng-show="change.count>=2">changes</span></p>
+                    <p ng-show="!forked.repo">You do not appear to have a forked repository of {{master.repo.full_name}}. When saving your changes, a new
+                    repository will be created, with you as the owner, as a copy (fork) of the original project. A fork is generally performed in a matter
+                    of seconds, but it may take up to a few minutes.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" ng-click="doSave()">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+         
+</div>
