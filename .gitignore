@@ -1,0 +1,9 @@
+/.project
+/node_modules/
+/config.json
+/sessions/
+/tmp/
+/config.*.json
+/data
+/keys.json
+/ads/
